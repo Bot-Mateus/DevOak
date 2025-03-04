@@ -140,48 +140,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // Tooltip melhorado
-  skillItems.forEach(item => {
-    let hoverTimeout;
-    
-    item.addEventListener('mouseenter', function(e) {
-      clearTimeout(hoverTimeout);
-      // Fecha todos os tooltips
-      skillItems.forEach(otherItem => {
-        otherItem.classList.remove('active');
-      });
-      // Abre o tooltip atual
-      hoverTimeout = setTimeout(() => {
-        this.classList.add('active');
-      }, 200);
-    });
-  
-    item.addEventListener('mouseleave', function() {
-      clearTimeout(hoverTimeout);
-      this.classList.remove('active');
-    });
-
-    
-    // Remove animação quando o tooltip é fechado
-    item.addEventListener('mouseleave', function() {
-      const icon = this.querySelector('.skill-icon');
-      if (icon) icon.style.animation = '';
-    });
-    
-    // Efeito hover para dispositivos com mouse
-    if (window.matchMedia('(hover: hover)').matches) {
-      item.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateX(5px)';
-      });
-      
-      item.addEventListener('mouseleave', function() {
-        if (!this.classList.contains('active')) {
-          this.style.transform = '';
-        }
-      });
-    }
-  });
-  
   // Animação das categorias de habilidades quando visíveis
   const skillCategories = document.querySelectorAll('.skill-category');
   

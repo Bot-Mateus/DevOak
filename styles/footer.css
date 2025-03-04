@@ -1,0 +1,6 @@
+/* Footer */
+footer {
+    padding: 2rem 0;
+    background-color: var(--secondary-bg);
+    text-align: center;
+}

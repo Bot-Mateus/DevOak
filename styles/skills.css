@@ -1,0 +1,388 @@
+/* Skills Section */
+:root {
+    --skill-accent: #20c997;
+    --skill-bg: rgba(255, 255, 255, 0.03);
+    --progress-bg: rgba(255, 255, 255, 0.1);
+    --skill-hover-bg: rgba(255, 255, 255, 0.07);
+}
+
+.skills {
+    padding: 8rem 0;
+    background: radial-gradient(circle at center, #131313 0%, #0a0a0a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 4.5rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.section-title-decor {
+    color: var(--skill-accent);
+    font-family: 'Courier New', monospace;
+    font-weight: 400;
+    filter: drop-shadow(0 0 8px var(--skill-accent));
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3.5rem;
+}
+
+.skill-category {
+    background: var(--skill-bg);
+    border-radius: 16px;
+    padding: 2.5rem;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-category::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, transparent 70%, var(--skill-accent) 100%);
+    z-index: -1;
+    border-radius: 17px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.skill-category:hover {
+    transform: translateY(-8px);
+}
+
+.skill-category:hover::before {
+    opacity: 0.7;
+}
+
+.category-header {
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+
+.category-icon {
+    font-size: 2.2rem;
+    color: var(--skill-accent);
+    margin-bottom: 1.2rem;
+    display: block;
+    text-shadow: 0 0 10px var(--skill-accent);
+    transform: translateZ(0);
+    transition: transform 0.3s ease;
+}
+
+.skill-category:hover .category-icon {
+    transform: scale(1.15) translateZ(0);
+    animation: iconFloat 2s ease infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0) scale(1.15); }
+    50% { transform: translateY(-10px) scale(1.15); }
+}
+
+.category-line {
+    width: 50px;
+    height: 3px;
+    background: var(--skill-accent);
+    margin: 1.2rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.category-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    animation: lineScan 3s ease infinite;
+}
+
+@keyframes lineScan {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.skills-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    overflow: visible;
+}
+
+.skill-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 10px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    overflow: visible;
+    border-left: 3px solid transparent;
+}
+
+.skill-item:hover {
+    background: var(--skill-hover-bg);
+    box-shadow: 0 0 20px rgba(32, 201, 151, 0.25);
+    transform: translateX(5px);
+    border-left: 3px solid var(--skill-accent);
+}
+
+.glow-on-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(32, 201, 151, 0.3), transparent);
+    transition: 0.6s;
+}
+
+.glow-on-hover:hover::before {
+    left: 100%;
+    animation: glowSweep 1.5s ease-in-out;
+}
+
+@keyframes glowSweep {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.skill-badge {
+    position: relative;
+    transition: transform 0.3s ease;
+    z-index: 2;
+}
+
+.skill-badge::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: var(--skill-accent);
+    border-radius: 4px;
+    filter: blur(15px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.skill-item:hover .skill-badge {
+    transform: scale(1.1);
+}
+
+.skill-item:hover .skill-badge::after {
+    opacity: 0.5;
+}
+
+.skill-badge img {
+    height: auto;
+    max-width: 100%;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+    transition: all 0.4s ease;
+}
+
+.skill-item:hover .skill-badge img {
+    filter: drop-shadow(0 0 8px rgba(32, 201, 151, 0.7));
+}
+
+.skill-badge::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 1px dashed rgba(32, 201, 151, 0.3);
+    border-radius: 6px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.skill-item:hover .skill-badge::before {
+    opacity: 1;
+    animation: rotateBorder 10s linear infinite;
+}
+
+@keyframes rotateBorder {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.skill-description {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 15, 15, 0.95);
+    border-left: 1px solid var(--skill-accent);
+    overflow-y: auto;
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-20px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.skill-item:hover .skill-description {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    left: 0;
+}
+
+.description-content {
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease 0.1s;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.skill-item:hover .description-content {
+    opacity: 1;
+}
+
+.description-header {
+    border-bottom: 1px solid rgba(32, 201, 151, 0.3);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.tech-dots {
+    display: flex;
+    gap: 5px;
+}
+
+.tech-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--skill-accent);
+    display: block;
+}
+
+.tech-dots span:nth-child(2) {
+    opacity: 0.7;
+}
+
+.tech-dots span:nth-child(3) {
+    opacity: 0.4;
+}
+
+.description-body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.description-body p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    position: relative;
+    padding-left: 1rem;
+    text-align: left;
+}
+
+.description-body p::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--skill-accent);
+    font-family: monospace;
+}
+
+.skill-item:hover .description-body p {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 1.5s steps(40, end);
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+.skill-item::after {
+    content: attr(data-binary);
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-family: monospace;
+    font-size: 0.7rem;
+    color: rgba(32, 201, 151, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.skill-item:hover::after {
+    opacity: 1;
+}
+
+.skill-item:nth-child(1)::after { content: "01010000"; }
+.skill-item:nth-child(2)::after { content: "01001010"; }
+.skill-item:nth-child(3)::after { content: "01000011"; }
+.skill-item:nth-child(4)::after { content: "01001000"; }
+.skill-item:nth-child(5)::after { content: "01010100"; }
+
+.skill-category::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ctext x='50%25' y='50%25' font-size='70' text-anchor='middle' dominant-baseline='middle' font-family='monospace' fill='rgba(32, 201, 151, 0.03)' transform='rotate(-45, 50, 50)'%3E01%3C/text%3E%3C/svg%3E");
+    opacity: 0.2;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+.skill-category:hover::after {
+    opacity: 0.4;
+    animation: backgroundMove 20s linear infinite;
+}
+
+@keyframes backgroundMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 100px 100px; }
+}
