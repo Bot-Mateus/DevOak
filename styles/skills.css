@@ -6,6 +6,9 @@
     --skill-hover-bg: rgba(255, 255, 255, 0.07);
 }
 
+/* Importação de fonte monoespaçada */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap');
+
 .skills {
     padding: 8rem 0;
     background: radial-gradient(circle at center, #131313 0%, #0a0a0a 100%);
@@ -24,7 +27,7 @@
 
 .section-title-decor {
     color: var(--skill-accent);
-    font-family: 'Courier New', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-weight: 400;
     filter: drop-shadow(0 0 8px var(--skill-accent));
     animation: pulse 2s infinite;
@@ -61,7 +64,7 @@
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: linear-gradient(45deg, transparent 70%, var(--skill-accent) 100%);
+    /*background: linear-gradient(45deg, transparent 70%, var(--skill-accent) 100%);*/
     z-index: -1;
     border-radius: 17px;
     opacity: 0;
@@ -77,7 +80,7 @@
 }
 
 .category-header {
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
     position: relative;
 }
 
@@ -126,6 +129,24 @@
     100% { left: 100%; }
 }
 
+/* Nova categoria de descrição */
+.category-description {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-left: 2px solid var(--skill-accent);
+    border-radius: 0 4px 4px 0;
+}
+
+.category-description p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+    position: relative;
+}
+
 .skills-container {
     display: flex;
     flex-direction: column;
@@ -142,7 +163,7 @@
     border-radius: 10px;
     transition: all 0.4s ease;
     cursor: pointer;
-    overflow: visible;
+    overflow: hidden; /* Alterado para hidden para conter o efeito glow */
     border-left: 3px solid transparent;
 }
 
@@ -150,23 +171,25 @@
     background: var(--skill-hover-bg);
     box-shadow: 0 0 20px rgba(32, 201, 151, 0.25);
     transform: translateX(5px);
-    border-left: 3px solid var(--skill-accent);
+    /*border-left: 3px solid var(--skill-accent);*/
 }
 
+/* Corrigido o efeito glow-on-hover para passar completamente */
 .glow-on-hover::before {
     content: '';
     position: absolute;
     top: 0;
     left: -100%;
-    width: 50%;
+    width: 100%; /* Alterado para 100% em vez de 50% */
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(32, 201, 151, 0.3), transparent);
     transition: 0.6s;
+    z-index: 1; /* Garante que o efeito fique acima do conteúdo */
+    pointer-events: none; /* Permite clicar através do efeito */
 }
 
 .glow-on-hover:hover::before {
-    left: 100%;
-    animation: glowSweep 1.5s ease-in-out;
+    left: 100%; /* Animação completa */
 }
 
 @keyframes glowSweep {
@@ -237,116 +260,12 @@
     100% { transform: rotate(360deg); }
 }
 
-.skill-description {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(15, 15, 15, 0.95);
-    border-left: 1px solid var(--skill-accent);
-    overflow-y: auto;
-    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 100;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateX(-20px);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-}
-
-.skill-item:hover .skill-description {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(0);
-    left: 0;
-}
-
-.description-content {
-    padding: 1rem;
-    opacity: 0;
-    transition: opacity 0.3s ease 0.1s;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.skill-item:hover .description-content {
-    opacity: 1;
-}
-
-.description-header {
-    border-bottom: 1px solid rgba(32, 201, 151, 0.3);
-    padding-bottom: 0.5rem;
-    margin-bottom: 0.5rem;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.tech-dots {
-    display: flex;
-    gap: 5px;
-}
-
-.tech-dots span {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--skill-accent);
-    display: block;
-}
-
-.tech-dots span:nth-child(2) {
-    opacity: 0.7;
-}
-
-.tech-dots span:nth-child(3) {
-    opacity: 0.4;
-}
-
-.description-body {
-    flex: 1;
-    display: flex;
-    align-items: center;
-}
-
-.description-body p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.9);
-    margin: 0;
-    position: relative;
-    padding-left: 1rem;
-    text-align: left;
-}
-
-.description-body p::before {
-    content: '>';
-    position: absolute;
-    left: 0;
-    color: var(--skill-accent);
-    font-family: monospace;
-}
-
-.skill-item:hover .description-body p {
-    overflow: hidden;
-    white-space: nowrap;
-    animation: typing 1.5s steps(40, end);
-}
-
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-}
-
 .skill-item::after {
     content: attr(data-binary);
     position: absolute;
     bottom: 5px;
     right: 5px;
-    font-family: monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 0.7rem;
     color: rgba(32, 201, 151, 0.2);
     opacity: 0;
@@ -385,4 +304,23 @@
 @keyframes backgroundMove {
     0% { background-position: 0 0; }
     100% { background-position: 100px 100px; }
+}
+
+/* Estilo para dispositivos móveis */
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .category-description p {
+        font-size: 0.8rem;
+    }
+    
+    .skill-item {
+        padding: 1.2rem;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
 }
