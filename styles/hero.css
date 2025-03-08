@@ -21,6 +21,7 @@
 .hero h1 span {
     color: var(--primary-color);
     display: block;
+    filter: drop-shadow(0 0 8px var(--timeline-accent));
 }
 
 .hero p {
@@ -46,3 +47,37 @@
     position: absolute;
     border-radius: 50%;
 }
+
+.hero .particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+  }
+  
+  .hyperspace-star {
+    position: absolute;
+    border-radius: 20%;
+    will-change: transform, opacity, box-shadow;
+    pointer-events: none;
+    z-index: 1;
+    transform-origin: center center;
+  }
+  
+  /* Adiciona um efeito de perspectiva à seção hero */
+  .hero {
+    perspective: 1000px;
+    overflow: hidden;
+  }
+  
+  /* Garantir que o conteúdo fique visível sobre as estrelas */
+  .hero-content {
+    position: relative;
+    z-index: 5;
+  }
